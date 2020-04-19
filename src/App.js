@@ -1,13 +1,15 @@
 import React from 'react';
-import Home from './containers/Home/Home';
-import Spotify from './containers/Spotify/Spotify';
+import { BrowserRouter } from 'react-router-dom'; 
+import Home from './components/Home';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <Home />
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Home />
+      </div>
+    </BrowserRouter>
   );
 }
 
