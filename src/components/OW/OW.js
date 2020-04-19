@@ -1,27 +1,32 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import OWCards from './OWCards/OWCards';
 import styles from './OW.module.css';
 import { Grid } from '@material-ui/core';
-import { fetchUsers } from '../../api/api';
 
 class OW extends Component {
     state = {
         userData: [],
     };
 
-    async componentDidMount() {
-        const fetchedUsers = await fetchUsers();
+    loadUsers = () => {
+        axios.get('/getallusers')
+            .then((response) => {
+                this.setState({ userData: response.data.users }, () => {
+                    console.log(this.state.userData)
+                });
+            });
+    };
 
-        this.setState({ userData: fetchedUsers });
+    componentDidMount() {
+        this.loadUsers();
     };
 
     render() {
-        let { userData } = this.state;
-
         return (
             <div className={styles.container}>
                 <Grid container spacing={3} justify='center'>
-                    <OWCards users={userData} />
+                    <OWCards users={this.state.userData} />
                 </Grid>
             </div>
         )

@@ -48,13 +48,3 @@ export const fetchCountries = async () => {
         console.log(error);
     }
 }
-
-export const fetchUsers = async () => {
-    try {
-        const { data } = await axios.get('/getallusers');
-
-        return data.users;
-    } catch (error) {
-        console.log(error);
-    }
-}

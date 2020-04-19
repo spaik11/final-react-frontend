@@ -1,10 +1,10 @@
 import React from 'react';
-import { Card, CardContent, Typography, Button, CardActions, Grid } from '@material-ui/core';
+import { Card, CardContent, Typography, Button, CardActions } from '@material-ui/core';
 import styles from './OWCard.module.css';
 
 const OWCard = (props) => {
     return (
-        <Grid item xs={12} md={3} component={OWCard} className={styles.card}>
+        <div className={styles.container}>
             <Card  variant="outlined">
             <CardContent>
             <Typography color="textSecondary" gutterBottom>
@@ -28,7 +28,7 @@ const OWCard = (props) => {
             <Button size="small">Learn More</Button>
             </CardActions>
             </Card>
-        </Grid>
+        </div>
     )
 }
 
