@@ -3,36 +3,51 @@ import {
   Card,
   CardContent,
   Typography,
-  Button,
-  CardActions,
+  CardActionArea,
+  CardMedia,
 } from "@material-ui/core";
-import styles from "./OWCard.module.css";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+  root: {
+    maxWidth: 345,
+  },
+  media: {
+    height: 140,
+  },
+  rank: {
+    height: 20,
+    width: 20,
+  },
+});
 
 const OWCard = (props) => {
+  const classes = useStyles();
+
   return (
-    <div className={styles.container}>
-      <Card variant='outlined'>
+    <Card className={classes.root}>
+      <CardActionArea>
+        <CardMedia
+          className={classes.media}
+          image={props.portrait}
+          title='Overwatch'
+        />
         <CardContent>
-          <Typography color='textSecondary' gutterBottom>
-            {props.name}
+          <Typography gutterBottom variant='h5' component='h2'>
+            {props.userName}
           </Typography>
-          <Typography variant='h5' component='h2'>
-            Rank
+          <Typography variant='body2' color='textSecondary' component='p'>
+            Tank: {props.tankRank}
           </Typography>
-          <Typography color='textSecondary'>{props.overwatch}</Typography>
-          <Typography variant='body2' component='p'>
-            Tank
-            <br />
-            DPS
-            <br />
-            Healer
+          <Typography variant='body2' color='textSecondary' component='p'>
+            Damage: {props.dmgRank}
+          </Typography>
+          <Typography variant='body2' color='textSecondary' component='p'>
+            Support: {props.sptRank}
           </Typography>
         </CardContent>
-        <CardActions>
-          <Button size='small'>Learn More</Button>
-        </CardActions>
-      </Card>
-    </div>
+      </CardActionArea>
+    </Card>
   );
 };
 

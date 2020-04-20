@@ -3,23 +3,23 @@
 }
 
 .card {
-    margin: 0 2% !important;
+    margin: 0 3% !important;
 }
 
 .infected {
-    border-bottom: 10px solid rgba(0, 0, 255, 0.5);
+    color: blue;
 }
 
 .recovered {
-    border-bottom: 10px solid rgba(0, 255, 0, 0.5);
+    color: green;
 }
 
 .deaths {
-    border-bottom: 10px solid rgba(255, 0, 0, 0.5);
+    color: red;
 }
 
 @media (max-width: 770px) {
     .card {
-        margin: 2% 0 !important;
+        margin: 3% 0 !important;
     }
 }

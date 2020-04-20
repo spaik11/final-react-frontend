@@ -1,7 +1,6 @@
 import React from "react";
 import { Card, CardContent, Typography, Grid } from "@material-ui/core";
 import CountUp from "react-countup";
-import cx from "classnames";
 import styles from "./CovidCards.module.css";
 
 const CovidCards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
@@ -12,12 +11,7 @@ const CovidCards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
   return (
     <div className={styles.container}>
       <Grid container spacing={3} justify='center'>
-        <Grid
-          item
-          xs={12}
-          md={3}
-          component={Card}
-          className={cx(styles.card, styles.infected)}>
+        <Grid item xs={12} md={3} component={Card} className={styles.card}>
           <CardContent>
             <Typography color='textSecondary' gutterBottom>
               Infected
@@ -28,6 +22,7 @@ const CovidCards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
                 end={confirmed.value}
                 duration={2.5}
                 separator=','
+                className={styles.infected}
               />
             </Typography>
             <Typography color='textSecondary'>
@@ -38,12 +33,7 @@ const CovidCards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
             </Typography>
           </CardContent>
         </Grid>
-        <Grid
-          item
-          xs={12}
-          md={3}
-          component={Card}
-          className={cx(styles.card, styles.recovered)}>
+        <Grid item xs={12} md={3} component={Card} className={styles.card}>
           <CardContent>
             <Typography color='textSecondary' gutterBottom>
               Recovered
@@ -54,6 +44,7 @@ const CovidCards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
                 end={recovered.value}
                 duration={2.5}
                 separator=','
+                className={styles.recovered}
               />
             </Typography>
             <Typography color='textSecondary'>
@@ -64,12 +55,7 @@ const CovidCards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
             </Typography>
           </CardContent>
         </Grid>
-        <Grid
-          item
-          xs={12}
-          md={3}
-          component={Card}
-          className={cx(styles.card, styles.deaths)}>
+        <Grid item xs={12} md={3} component={Card} className={styles.card}>
           <CardContent>
             <Typography color='textSecondary' gutterBottom>
               Deaths
@@ -80,6 +66,7 @@ const CovidCards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
                 end={deaths.value}
                 duration={2.5}
                 separator=','
+                className={styles.deaths}
               />
             </Typography>
             <Typography color='textSecondary'>

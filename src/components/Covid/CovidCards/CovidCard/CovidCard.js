@@ -1,15 +1,9 @@
 import React from "react";
 import { Card, CardContent, Typography, Grid } from "@material-ui/core";
 import CountUp from "react-countup";
-import cx from "classnames";
 
 const CovidCard = (props) => (
-  <Grid
-    item
-    xs={12}
-    md={3}
-    component={Card}
-    className={cx(styles.card, styles.infected)}>
+  <Grid item xs={12} md={3} component={Card} className={styles.card}>
     <CardContent>
       <Typography color='textSecondary' gutterBottom>
         Infected
