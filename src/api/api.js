@@ -1,50 +1,54 @@
-import axios from 'axios';
+import axios from "axios";
 
-let url = 'https://covid19.mathdro.id/api';
+let url = "https://covid19.mathdro.id/api";
 
 export const fetchData = async (country) => {
-    let changeableUrl = url;
+  let changeableUrl = url;
 
-    if (country) {
-        changeableUrl = `${url}/countries/${country}`
+  if (country) {
+    changeableUrl = `${url}/countries/${country}`;
+  }
+
+  try {
+    const {
+      data: { confirmed, recovered, deaths, lastUpdate },
+    } = await axios.get(changeableUrl);
+
+    const modifiedData = {
+      confirmed,
+      recovered,
+      deaths,
+      lastUpdate,
     };
 
-    try {
-        const { data: { confirmed, recovered, deaths, lastUpdate } } = await axios.get(changeableUrl);
-
-        const modifiedData = {
-            confirmed,
-            recovered,
-            deaths,
-            lastUpdate
-        };
-
-        return modifiedData;
-    } catch (error) {
-        console.log(error);
-    };
+    return modifiedData;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const fetchDailyData = async () => {
-    try {
-        const { data } = await axios.get(`${url}/daily`);
+  try {
+    const { data } = await axios.get(`${url}/daily`);
 
-        return data.map((dailyData) => ({
-            confirmed: dailyData.confirmed.total,
-            deaths: dailyData.deaths.total,
-            date: dailyData.reportDate,
-        }));
-    } catch (error) {
-        console.log(error);
-    };
+    return data.map((dailyData) => ({
+      confirmed: dailyData.confirmed.total,
+      deaths: dailyData.deaths.total,
+      date: dailyData.reportDate,
+    }));
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const fetchCountries = async () => {
-    try {
-        const { data: { countries }} = await axios.get(`${url}/countries`);
+  try {
+    const {
+      data: { countries },
+    } = await axios.get(`${url}/countries`);
 
-        return countries.map((country) => country.name);
-    } catch (error) {
-        console.log(error);
-    }
-}
+    return countries.map((country) => country.name);
+  } catch (error) {
+    console.log(error);
+  }
+};
