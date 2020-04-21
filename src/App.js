@@ -1,13 +1,14 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import Home from "./components/Home";
+import { Header, Body } from "./components";
 import "./App.css";
 
 function App() {
   return (
     <BrowserRouter>
       <div className='App'>
-        <Home />
+        <Header />
+        <Body />
       </div>
     </BrowserRouter>
   );

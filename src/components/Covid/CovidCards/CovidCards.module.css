@@ -8,14 +8,17 @@
 
 .infected {
     color: blue;
+    opacity: 0.85;
 }
 
 .recovered {
     color: green;
+    opacity: 0.85;
 }
 
 .deaths {
     color: red;
+    opacity: 0.85;
 }
 
 @media (max-width: 770px) {

@@ -2,11 +2,9 @@ import React from "react";
 import OWCard from "./OWCard/OWCard";
 
 const OWCards = (props) => {
-  if (!props.users) {
-    return "Loading...";
-  }
+  let owPlayersOnly = props.users.filter((user) => user.OWStats.userName);
 
-  return props.users.map(
+  return owPlayersOnly.map(
     ({
       name,
       OWStats: {
