@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
-import { OW, Covid } from "../components";
+import { OW, Covid, Register, Login } from "../components";
 import styles from "./Body.module.css";
 
 class Body extends Component {
@@ -10,6 +10,7 @@ class Body extends Component {
         <Switch>
           <Route path='/ow' component={OW} />
           <Route path='/covid' component={Covid} />
+          <Route path='/register' component={Register} />
         </Switch>
       </div>
     );

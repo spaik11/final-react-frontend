@@ -7,3 +7,5 @@ export { default as Spotify } from "./Spotify/Spotify";
 export { default as Header } from "./Header/Header";
 export { default as Sidebar } from "./Sidebar/Sidebar";
 export { default as Body } from "./Body";
+export { default as Register } from "./auth/Register";
+export { default as Login } from "./auth/Login";
