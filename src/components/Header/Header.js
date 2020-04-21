@@ -1,10 +1,10 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-    alignItems: "left",
+    textAlign: "left",
   },
 }));
 
@@ -29,6 +29,16 @@ export default function ButtonAppBar() {
           <Typography variant='h6' className={classes.title}>
             Random App
           </Typography>
+          <Button color='inherit'>
+            <NavLink style={{ color: "white" }} to='/ow' exact>
+              Overwatch
+            </NavLink>
+          </Button>
+          <Button color='inherit'>
+            <NavLink style={{ color: "white" }} to='/covid' exact>
+              Covid-19
+            </NavLink>
+          </Button>
           <Button color='inherit'>Login</Button>
         </Toolbar>
       </AppBar>
