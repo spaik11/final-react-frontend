@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField, Button } from "@material-ui/core";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import styles from "./Register.module.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -39,10 +41,57 @@ const Register = () => {
   };
 
   useEffect(() => {
+    const axiosConfig = {
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8",
+        "Access-Control-Allow-Origin": "*",
+      },
+    };
+
     if (Object.keys(errors).length === 0 && isSubmitting) {
-      console.log("Submitted without errors");
+      axios.post("/register", values, axiosConfig).then(({ data: json }) => {
+        console.log("POST USER", json);
+
+        if (json.error) {
+          setIsSubmitting(false);
+          setValues({
+            name: "",
+            email: "",
+            password: "",
+            owId: "",
+          });
+
+          return toast.error("🦄 User Already Exists", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        } else {
+          setIsSubmitting(false);
+          setValues({
+            name: "",
+            email: "",
+            password: "",
+            owId: "",
+          });
+
+          return toast.success("🦄 User Successfully Created", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        }
+      });
     }
-  }, [errors]);
+  }, [errors, isSubmitting, values]);
 
   const validate = (values) => {
     let errors = {};
@@ -70,9 +119,19 @@ const Register = () => {
 
   return (
     <form className={classes.root} noValidate autoComplete='off'>
+      <ToastContainer
+        position='top-center'
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div>
         <TextField
-          id='standard-basic'
           label='Name'
           name='name'
           value={values.name}
@@ -83,7 +142,6 @@ const Register = () => {
       <br />
       <div>
         <TextField
-          id='standard-basic'
           label='Email'
           name='email'
           value={values.email}
@@ -94,9 +152,9 @@ const Register = () => {
       <br />
       <div>
         <TextField
-          id='standard-basic'
           label='Password'
           name='password'
+          type='password'
           value={values.password}
           onChange={handleChange}
         />
@@ -105,7 +163,6 @@ const Register = () => {
       <br />
       <div>
         <TextField
-          id='standard-basic'
           label='Overwatch ID'
           name='owId'
           value={values.owId}
