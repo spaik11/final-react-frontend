@@ -11,6 +11,7 @@ class Body extends Component {
           <Route path='/ow' component={OW} />
           <Route path='/covid' component={Covid} />
           <Route path='/register' component={Register} />
+          <Route path='/login' component={Login} />
         </Switch>
       </div>
     );

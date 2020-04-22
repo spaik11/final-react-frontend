@@ -20,10 +20,12 @@ class OW extends Component {
   }
 
   render() {
+    const { userData } = this.state;
+
     return (
       <div className={styles.container}>
         <Grid container spacing={3} justify='center'>
-          <OWCards users={this.state.userData} />
+          {userData.length > 0 ? <OWCards users={this.state.userData} /> : null}
         </Grid>
       </div>
     );

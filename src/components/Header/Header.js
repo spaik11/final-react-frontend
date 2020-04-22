@@ -24,7 +24,7 @@ export default function ButtonAppBar() {
       <AppBar position='static'>
         <Toolbar>
           <Typography variant='h6' className={classes.title}>
-            Random App
+            Code Immersives
           </Typography>
           <Button color='inherit'>
             <NavLink style={{ color: "white" }} to='/ow' exact>
@@ -39,6 +39,11 @@ export default function ButtonAppBar() {
           <Button color='inherit'>
             <NavLink style={{ color: "white" }} to='/register' exact>
               Register
+            </NavLink>
+          </Button>
+          <Button color='inherit'>
+            <NavLink style={{ color: "white" }} to='/login' exact>
+              Login
             </NavLink>
           </Button>
         </Toolbar>

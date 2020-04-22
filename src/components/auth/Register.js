@@ -20,6 +20,7 @@ const Register = () => {
     name: "",
     email: "",
     password: "",
+    password2: "",
     owId: "",
   });
   const [errors, setErrors] = useState({});
@@ -30,7 +31,7 @@ const Register = () => {
 
     setValues({
       ...values,
-      [name]: value,
+      [name]: value.toLowerCase().trim(),
     });
   };
 
@@ -58,10 +59,11 @@ const Register = () => {
             name: "",
             email: "",
             password: "",
+            password2: "",
             owId: "",
           });
 
-          return toast.error("🦄 User Already Exists", {
+          return toast.error("😲 User Already Exists", {
             position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,
@@ -76,10 +78,11 @@ const Register = () => {
             name: "",
             email: "",
             password: "",
+            password2: "",
             owId: "",
           });
 
-          return toast.success("🦄 User Successfully Created", {
+          return toast.success("👌 User Successfully Created", {
             position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,
@@ -110,6 +113,10 @@ const Register = () => {
       errors.password = "Password is required";
     } else if (values.password.length < 5) {
       errors.password = "Password needs to be more than 5 characters";
+    }
+
+    if (values.password !== values.password2) {
+      errors.password2 = "Password does not match";
     }
 
     return errors;
@@ -159,6 +166,17 @@ const Register = () => {
           onChange={handleChange}
         />
         {errors.password && <p className={styles.error}>{errors.password}</p>}
+      </div>
+      <br />
+      <div>
+        <TextField
+          label='Confirm Password'
+          name='password2'
+          type='password'
+          value={values.password2}
+          onChange={handleChange}
+        />
+        {errors.password2 && <p className={styles.error}>{errors.password2}</p>}
       </div>
       <br />
       <div>
