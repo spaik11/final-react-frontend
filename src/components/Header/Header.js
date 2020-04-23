@@ -7,12 +7,16 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
+  header: {
+    backgroundColor: "#1D1F19",
+  },
   menuButton: {
     marginRight: theme.spacing(2),
   },
   title: {
     flexGrow: 1,
     textAlign: "left",
+    fontWeight: "bold",
   },
 }));
 
@@ -21,7 +25,7 @@ export default function ButtonAppBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position='static'>
+      <AppBar position='static' className={classes.header}>
         <Toolbar>
           <Typography variant='h6' className={classes.title}>
             Code Immersives

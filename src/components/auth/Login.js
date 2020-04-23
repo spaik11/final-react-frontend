@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField, Button } from "@material-ui/core";
 import { ToastContainer, toast } from "react-toastify";
@@ -17,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
 const Login = () => {
   const [values, setValues] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -30,7 +32,56 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     setErrors(validate(values));
+    setIsSubmitting(true);
   };
+
+  useEffect(() => {
+    const axiosConfig = {
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8",
+        "Access-Control-Allow-Origin": "*",
+      },
+    };
+
+    if (Object.keys(errors).length === 0 && isSubmitting) {
+      axios
+        .post("/login", values, axiosConfig)
+        .then(({ data: { success, token, user } }) => {
+          if (!success) {
+            setIsSubmitting(false);
+            return toast.error("😲 Please check email or password", {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          } else {
+            setIsSubmitting(false);
+            setValues({
+              email: "",
+              password: "",
+            });
+            return toast.success(
+              `👌 You're now logged in ${
+                user.slice(0, 1).toUpperCase() + user.slice(1)
+              }!`,
+              {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              }
+            );
+          }
+        });
+    }
+  }, [isSubmitting, errors, values]);
 
   const validate = (values) => {
     let errors = {};

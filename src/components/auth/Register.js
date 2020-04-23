@@ -31,7 +31,7 @@ const Register = () => {
 
     setValues({
       ...values,
-      [name]: value.toLowerCase().trim(),
+      [name]: value.trim(),
     });
   };
 
@@ -47,52 +47,61 @@ const Register = () => {
         "Content-Type": "application/json;charset=UTF-8",
         "Access-Control-Allow-Origin": "*",
       },
+      withCredentials: true,
     };
 
     if (Object.keys(errors).length === 0 && isSubmitting) {
-      axios.post("/register", values, axiosConfig).then(({ data: json }) => {
-        console.log("POST USER", json);
+      axios.post("/register", values, axiosConfig).then(
+        ({
+          data: {
+            error,
+            user: { name },
+          },
+        }) => {
+          if (error) {
+            setIsSubmitting(false);
+            setValues({
+              name: "",
+              email: "",
+              password: "",
+              password2: "",
+              owId: "",
+            });
 
-        if (json.error) {
-          setIsSubmitting(false);
-          setValues({
-            name: "",
-            email: "",
-            password: "",
-            password2: "",
-            owId: "",
-          });
+            return toast.error("😲 User Already Exists", {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          } else {
+            setIsSubmitting(false);
+            setValues({
+              name: "",
+              email: "",
+              password: "",
+              password2: "",
+              owId: "",
+            });
 
-          return toast.error("😲 User Already Exists", {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-        } else {
-          setIsSubmitting(false);
-          setValues({
-            name: "",
-            email: "",
-            password: "",
-            password2: "",
-            owId: "",
-          });
-
-          return toast.success("👌 User Successfully Created", {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
+            return toast.success(
+              `👌 Welcome, ${name.slice(0, 1).toUpperCase() + name.slice(1)}!`,
+              {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              }
+            );
+          }
         }
-      });
+      );
     }
   }, [errors, isSubmitting, values]);
 
