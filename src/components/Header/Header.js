@@ -20,8 +20,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ButtonAppBar() {
+const Header = (props) => {
   const classes = useStyles();
+  let user = !props.loggedInStatus ? (
+    <div>
+      <Button color='inherit'>
+        <NavLink style={{ color: "white" }} to='/login' exact>
+          Login
+        </NavLink>
+      </Button>
+      <Button color='inherit'>
+        <NavLink style={{ color: "white" }} to='/register' exact>
+          Register
+        </NavLink>
+      </Button>
+    </div>
+  ) : (
+    <Button color='inherit'>{props.userInfo.name.toUpperCase()}</Button>
+  );
 
   return (
     <div className={classes.root}>
@@ -40,18 +56,11 @@ export default function ButtonAppBar() {
               Covid-19
             </NavLink>
           </Button>
-          <Button color='inherit'>
-            <NavLink style={{ color: "white" }} to='/register' exact>
-              Register
-            </NavLink>
-          </Button>
-          <Button color='inherit'>
-            <NavLink style={{ color: "white" }} to='/login' exact>
-              Login
-            </NavLink>
-          </Button>
+          {user}
         </Toolbar>
       </AppBar>
     </div>
   );
-}
+};
+
+export default Header;
