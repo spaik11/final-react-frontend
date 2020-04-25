@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField, Button } from "@material-ui/core";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./Register.module.css";
+import { UserContext } from "../UserContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,6 +26,8 @@ const Register = () => {
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const { setUserStatus, setUserInfo } = useContext(UserContext);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -51,13 +54,9 @@ const Register = () => {
     };
 
     if (Object.keys(errors).length === 0 && isSubmitting) {
-      axios.post("/register", values, axiosConfig).then(
-        ({
-          data: {
-            error,
-            user: { name },
-          },
-        }) => {
+      axios
+        .post("/register", values, axiosConfig)
+        .then(({ data: { error, user } }) => {
           if (error) {
             setIsSubmitting(false);
             setValues({
@@ -78,6 +77,9 @@ const Register = () => {
               progress: undefined,
             });
           } else {
+            setUserStatus(true);
+            setUserInfo({ ...user });
+
             setIsSubmitting(false);
             setValues({
               name: "",
@@ -88,7 +90,9 @@ const Register = () => {
             });
 
             return toast.success(
-              `👌 Welcome, ${name.slice(0, 1).toUpperCase() + name.slice(1)}!`,
+              `👌 Welcome, ${
+                user.name.slice(0, 1).toUpperCase() + user.name.slice(1)
+              }!`,
               {
                 position: "top-center",
                 autoClose: 5000,
@@ -100,10 +104,9 @@ const Register = () => {
               }
             );
           }
-        }
-      );
+        });
     }
-  }, [errors, isSubmitting, values]);
+  }, [errors, isSubmitting, values, setUserInfo, setUserStatus]);
 
   const validate = (values) => {
     let errors = {};
@@ -135,17 +138,19 @@ const Register = () => {
 
   return (
     <form className={classes.root} noValidate autoComplete='off'>
-      <ToastContainer
-        position='top-center'
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
+      <div>
+        <ToastContainer
+          position='top-center'
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+      </div>
       <div>
         <TextField
           label='Name'

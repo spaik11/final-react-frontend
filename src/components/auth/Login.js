@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField, Button } from "@material-ui/core";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./Register.module.css";
+import { UserContext } from "../UserContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,6 +20,8 @@ const Login = () => {
   const [values, setValues] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const { setUserStatus, setUserInfo } = useContext(UserContext);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -59,11 +62,15 @@ const Login = () => {
               progress: undefined,
             });
           } else {
+            setUserStatus(true);
+            setUserInfo({ ...user });
+
             setIsSubmitting(false);
             setValues({
               email: "",
               password: "",
             });
+
             return toast.success(
               `👌 You're now logged in ${
                 user.slice(0, 1).toUpperCase() + user.slice(1)
@@ -81,7 +88,7 @@ const Login = () => {
           }
         });
     }
-  }, [isSubmitting, errors, values]);
+  }, [isSubmitting, errors, values, setUserInfo, setUserStatus]);
 
   const validate = (values) => {
     let errors = {};
@@ -103,17 +110,19 @@ const Login = () => {
 
   return (
     <form className={classes.root} noValidate autoComplete='off'>
-      <ToastContainer
-        position='top-center'
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
+      <div>
+        <ToastContainer
+          position='top-center'
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+      </div>
       <div>
         <TextField
           label='Email'

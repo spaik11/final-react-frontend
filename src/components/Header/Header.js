@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
+import { UserContext } from "../UserContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,9 +21,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = (props) => {
+const Header = () => {
   const classes = useStyles();
-  let user = !props.loggedInStatus ? (
+
+  const { userStatus, userInfo } = useContext(UserContext);
+
+  let user = !userStatus ? (
     <div>
       <Button color='inherit'>
         <NavLink style={{ color: "white" }} to='/login' exact>
@@ -36,7 +40,7 @@ const Header = (props) => {
       </Button>
     </div>
   ) : (
-    <Button color='inherit'>{props.userInfo.name.toUpperCase()}</Button>
+    <Button color='inherit'>Hello, {userInfo.name}</Button>
   );
 
   return (

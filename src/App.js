@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Header, Body, Sidebar } from "./components";
+import { UserProvider } from "./components/UserContext";
 import styles from "./App.module.css";
 
 const App = () => {
-  const [userStatus, setUserStatus] = useState(false);
-  const [userInfo, setUserInfo] = useState({});
-
   return (
     <BrowserRouter>
-      <Header loggedInStatus={userStatus} userInfo={userInfo} />
-      <div className={styles.middle}>
-        <Sidebar />
-        <Body />
-      </div>
+      <UserProvider>
+        <Header />
+        <div className={styles.middle}>
+          <Sidebar />
+          <Body />
+        </div>
+      </UserProvider>
     </BrowserRouter>
   );
 };
