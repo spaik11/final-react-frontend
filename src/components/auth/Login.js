@@ -73,7 +73,7 @@ const Login = () => {
 
             return toast.success(
               `👌 You're now logged in ${
-                user.slice(0, 1).toUpperCase() + user.slice(1)
+                user.name.slice(0, 1).toUpperCase() + user.name.slice(1)
               }!`,
               {
                 position: "top-center",

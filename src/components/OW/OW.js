@@ -7,25 +7,33 @@ import { Grid } from "@material-ui/core";
 class OW extends Component {
   state = {
     userData: [],
+    owData: [],
   };
 
   loadUsers = () => {
     axios.get("/getallusers").then((response) => {
-      this.setState({ userData: response.data.users });
+      this.setState({ userData: response.data });
     });
+  };
+
+  loadOWData = () => {
+    let owId = this.state.userData.map((user) => user.owId);
+    console.log(owId);
   };
 
   componentDidMount() {
     this.loadUsers();
+    this.loadOWData();
   }
 
   render() {
     const { userData } = this.state;
+    console.log("RENDER", userData);
 
     return (
       <div className={styles.container}>
         <Grid container spacing={3} justify='center'>
-          {userData.length > 0 ? <OWCards users={this.state.userData} /> : null}
+          <h1>OW</h1>
         </Grid>
       </div>
     );
