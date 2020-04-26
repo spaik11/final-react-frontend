@@ -11,6 +11,10 @@ const useStyles = makeStyles({
   media: {
     height: 140,
   },
+  card: {
+    textAlign: "center",
+    margin: "auto",
+  },
   rank: {
     height: 20,
     width: 20,
@@ -30,9 +34,9 @@ const OWCard = (props) => {
         image={props.portrait}
         title='Overwatch'
       />
-      <CardContent>
+      <CardContent className={classes.card}>
         <Typography gutterBottom variant='h5' component='h2'>
-          {props.username.slice(0, 1).toUpperCase() + props.username.slice(1)}
+          {props.name.slice(0, props.name.indexOf("#")).toUpperCase()}
         </Typography>
         <Typography variant='body2' color='textSecondary' component='p'>
           Tank {bull} <CountUp start={0} end={props.tankRank} duration={2.5} />

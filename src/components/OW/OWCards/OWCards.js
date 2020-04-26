@@ -1,45 +1,26 @@
 import React from "react";
 import OWCard from "./OWCard/OWCard";
+import styles from "./OWCards.module.css";
 
 const OWCards = (props) => {
-  let owPlayersOnly = props.users.filter((user) => user.OWStats.userName);
-
-  return owPlayersOnly.map(
-    ({
-      name,
-      OWStats: {
-        userName,
-        portrait,
-        level,
-        competitiveGames: { won, lost, draw, played },
-        competitiveStats: {
-          tank: { rank: tRank, rank_img: tRank_img },
-          damage: { rank: dRank, rank_img: dRank_img },
-          support: { rank: sRank, rank_img: sRank_img },
-        },
-      },
-    }) => {
-      return (
-        <div key={userName}>
+  return (
+    <div className={styles.container}>
+      {props.users.map(
+        ({ level, icon, name, ratings, competitiveStats: { topHeroes } }) => (
           <OWCard
+            key={level}
+            portrait={icon}
             name={name}
-            username={userName}
-            portrait={portrait}
-            level={level}
-            won={won}
-            lost={lost}
-            draw={draw}
-            played={played}
-            tankRank={tRank}
-            tankImg={tRank_img}
-            dmgRank={dRank}
-            dmgImg={dRank_img}
-            sptRank={sRank}
-            sptImg={sRank_img}
+            tankRank={ratings[0].level}
+            tankImg={ratings[0].rankIcon}
+            dmgRank={ratings[1].level}
+            dmgImg={ratings[1].rankIcon}
+            sptRank={ratings[2].level}
+            sptImg={ratings[2].rankIcon}
           />
-        </div>
-      );
-    }
+        )
+      )}
+    </div>
   );
 };
 

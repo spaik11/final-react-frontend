@@ -52,3 +52,21 @@ export const fetchCountries = async () => {
     console.log(error);
   }
 };
+
+export const fetchOwData = async (users) => {
+  try {
+    let owPlayersData = [];
+    users
+      .filter(({ owId }) => owId !== "")
+      .map(({ owId }) => {
+        return axios
+          .get(`https://ovrstat.com/stats/pc/${owId}`)
+          .then(({ data }) => {
+            return owPlayersData.push(data);
+          });
+      });
+    return owPlayersData;
+  } catch (error) {
+    console.log(error);
+  }
+};

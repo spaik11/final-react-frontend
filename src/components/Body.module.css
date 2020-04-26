@@ -11,7 +11,8 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 900px;
+    padding: 20px;
+    width: 100%;
 }
 
 @media (max-width: 770px) {

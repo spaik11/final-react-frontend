@@ -1,11 +1,12 @@
 import React from "react";
 import { Card, CardContent, Typography, Grid } from "@material-ui/core";
+import Loader from "react-loader-spinner";
 import CountUp from "react-countup";
 import styles from "./CovidCards.module.css";
 
 const CovidCards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
   if (!confirmed) {
-    return "Loading...";
+    return <Loader type='Puff' color='#00BFFF' height={100} width={100} />;
   }
 
   return (
