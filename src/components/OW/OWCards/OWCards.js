@@ -1,5 +1,5 @@
 import React from "react";
-import OWCard from "./OWCard/OWCard";
+import { OWCard } from "../../../components";
 import styles from "./OWCards.module.css";
 
 const OWCards = (props) => {

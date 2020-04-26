@@ -3,7 +3,7 @@ import axios from "axios";
 import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { fetchOwData } from "../../api/api";
-import OWCards from "./OWCards/OWCards";
+import { OWCards } from "../../components";
 import styles from "./OW.module.css";
 import { Grid } from "@material-ui/core";
 
