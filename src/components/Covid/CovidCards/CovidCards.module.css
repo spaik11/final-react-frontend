@@ -1,5 +1,5 @@
 .container {
-    margin: 50px 0;
+    margin: 50px;
     width: 800px;
 }
 
@@ -9,17 +9,17 @@
 
 .infected {
     color: blue;
-    opacity: 0.85;
+    opacity: 0.75;
 }
 
 .recovered {
     color: green;
-    opacity: 0.85;
+    opacity: 0.75;
 }
 
 .deaths {
     color: red;
-    opacity: 0.85;
+    opacity: 0.75;
 }
 
 @media (max-width: 770px) {
