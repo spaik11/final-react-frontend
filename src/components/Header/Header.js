@@ -40,7 +40,11 @@ const Header = () => {
       </Button>
     </div>
   ) : (
-    <Button color='inherit'>Hello, {userInfo.name}</Button>
+    <Button color='inherit'>
+      <NavLink style={{ color: "white" }} to='/profile' exact>
+        Hello, {userInfo.name}
+      </NavLink>
+    </Button>
   );
 
   return (

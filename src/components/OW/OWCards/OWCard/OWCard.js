@@ -21,6 +21,9 @@ const useStyles = makeStyles({
     alignItems: "center",
     margin: "auto",
   },
+  loggedUser: {
+    fontWeight: "bold",
+  },
 });
 
 const OWCard = (props) => {
@@ -35,7 +38,11 @@ const OWCard = (props) => {
         title='Overwatch'
       />
       <CardContent className={classes.card}>
-        <Typography gutterBottom variant='h5' component='h2'>
+        <Typography
+          gutterBottom
+          variant='h5'
+          component='h2'
+          className={classes.loggedUser}>
           {props.name.slice(0, props.name.indexOf("#")).toUpperCase()}
         </Typography>
         <Typography variant='body2' color='textSecondary' component='p'>

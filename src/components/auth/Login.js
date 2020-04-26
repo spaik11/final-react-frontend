@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Login = () => {
+const Login = (props) => {
   const [values, setValues] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -71,20 +71,7 @@ const Login = () => {
               password: "",
             });
 
-            return toast.success(
-              `👌 You're now logged in ${
-                user.name.slice(0, 1).toUpperCase() + user.name.slice(1)
-              }!`,
-              {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-              }
-            );
+            props.history.push("/ow");
           }
         });
     }

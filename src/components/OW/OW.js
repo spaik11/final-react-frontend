@@ -9,7 +9,6 @@ import { Grid } from "@material-ui/core";
 
 class OW extends Component {
   state = {
-    userData: [],
     owData: [],
   };
 
@@ -18,12 +17,11 @@ class OW extends Component {
     const owCall = await fetchOwData(data);
 
     this.setState({ owData: owCall });
-    this.setState({ userData: data });
   }
 
   render() {
     const { owData } = this.state;
-    console.log("RENDER", owData);
+    console.log("RENDER OW", owData);
     let renderUsers =
       owData.length > 0 ? (
         <OWCards users={owData} />

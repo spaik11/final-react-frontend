@@ -9,3 +9,4 @@ export { default as Sidebar } from "./Sidebar/Sidebar";
 export { default as Body } from "./Body";
 export { default as Register } from "./auth/Register";
 export { default as Login } from "./auth/Login";
+export { default as Profile } from "./auth/Profile";
