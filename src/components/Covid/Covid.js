@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { CovidCards, CountryPicker, Chart } from "../../components";
 import styles from "./Covid.module.css";
-import { fetchData } from "../../api/api";
+import { fetchCovidData } from "../../api/api";
 
 class Covid extends Component {
   state = {
@@ -10,13 +10,13 @@ class Covid extends Component {
   };
 
   async componentDidMount() {
-    const fetchedData = await fetchData();
+    const fetchedData = await fetchCovidData();
 
     this.setState({ data: fetchedData });
   }
 
   handleCountryChange = async (country) => {
-    const fetchedData = await fetchData(country);
+    const fetchedData = await fetchCovidData(country);
 
     this.setState({ data: fetchedData, country });
   };

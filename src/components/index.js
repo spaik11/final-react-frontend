@@ -4,7 +4,7 @@ export { default as Chart } from "./Covid/Chart/Chart";
 export { default as Covid } from "./Covid/Covid";
 export { default as OW } from "./OW/OW";
 export { default as OWCards } from "./OW/OWCards/OWCards";
-export { default as OWCard } from "./OW/OWCard/OWCard";
+export { default as OWCard } from "./OW/OWCards/OWCard/OWCard";
 export { default as Spotify } from "./Spotify/Spotify";
 export { default as Header } from "./Header/Header";
 export { default as Sidebar } from "./Sidebar/Sidebar";

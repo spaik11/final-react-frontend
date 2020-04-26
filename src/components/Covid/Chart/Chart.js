@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Line, Bar } from "react-chartjs-2";
-import { fetchDailyData } from "../../../api/api";
+import { fetchCovidDailyData } from "../../../api/api";
 
 import styles from "./Chart.module.css";
 
@@ -9,7 +9,7 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
 
   useEffect(() => {
     const fetchMyAPI = async () => {
-      const initialDailyData = await fetchDailyData();
+      const initialDailyData = await fetchCovidDailyData();
 
       setDailyData(initialDailyData);
     };
