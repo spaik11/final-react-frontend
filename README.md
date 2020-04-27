@@ -27,12 +27,13 @@ Two main page links to render
 ## Dependencies
 
 ### Overwatch API
-API Url - https://ovrstat.com/stats/pc/owId
+API Url - https://ovrstat.com/
 
 ### Covid-19
 API Url - https://covid19.mathdro.id/api
 
 ## NPM Packages
+`Front-end`
 
     Axios - Promise based HTTP client for the browser and node.js
     React Chart JS 2 - JS charting for designers & devs
@@ -40,11 +41,24 @@ API Url - https://covid19.mathdro.id/api
     React Router Dom - A collection of navigational components
     Toastify - Allows you to add interesting notifications with ease
     Classnames - A simple JS utility for conditionally joining classNames together
+    Loader-Spinner - Provides simple React spinner component
     Material UI - React UI framework
+
+`Back-end`
+
+    Axios
+    Async
+    BcryptJS
+    Dotenv
+    Express
+    JWT (JSON Web Token)
+    Passport
+    MongoDB
+    Mongoose
 
 ## Available Scripts
 
-## Front-End
+## Front-end
 In the project *front-end* directory, you can run:
 
 ### `npm install`
@@ -56,7 +70,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-## Back-End
+## Back-end
 
 Create a .env file and include the MONGODB_URI link and the ACCESS_TOKEN_SECRET before you run the server.
 
