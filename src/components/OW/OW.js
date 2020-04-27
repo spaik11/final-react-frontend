@@ -13,13 +13,15 @@ class OW extends Component {
   async componentDidMount() {
     const { data } = await axios.get("/getallusers");
     const owCall = await fetchOwData(data);
-
-    this.setState({ owData: owCall });
+    console.log("CDM", this.state.owData);
+    this.setState({ owData: owCall }, () => {
+      console.log("SET STATE", this.state.owData);
+    });
   }
 
   render() {
     const { owData } = this.state;
-
+    console.log("RENDER", owData);
     return (
       <div className={styles.container}>
         <Grid container spacing={3} justify='center'>

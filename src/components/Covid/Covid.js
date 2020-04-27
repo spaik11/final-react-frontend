@@ -27,7 +27,7 @@ class Covid extends Component {
     return (
       <div className={styles.container}>
         <CovidCards data={data} />
-        <CountryPicker handleCountryChange={this.countryChangeHandler} />
+        <CountryPicker countryChangeHandler={this.countryChangeHandler} />
         <Chart data={data} country={country} />
       </div>
     );
