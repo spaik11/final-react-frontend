@@ -75,7 +75,7 @@ const Login = (props) => {
           }
         });
     }
-  }, [isSubmitting, errors, values, setUserInfo, setUserStatus]);
+  }, [isSubmitting, errors, values, setUserInfo, setUserStatus, props.history]);
 
   const validate = (values) => {
     let errors = {};

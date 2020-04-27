@@ -21,7 +21,7 @@ class OW extends Component {
 
   render() {
     const { owData } = this.state;
-    console.log("RENDER OW", owData);
+
     let renderUsers =
       owData.length > 0 ? (
         <OWCards users={owData} />

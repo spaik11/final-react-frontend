@@ -53,7 +53,7 @@ export const fetchCovidCountries = async () => {
   }
 };
 
-export const fetchOwData = async (users) => {
+export const fetchOwData = (users) => {
   try {
     let owPlayersData = [];
     users

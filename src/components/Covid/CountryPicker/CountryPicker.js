@@ -3,7 +3,7 @@ import { NativeSelect, FormControl } from "@material-ui/core";
 import styles from "./CountryPicker.module.css";
 import { fetchCovidCountries } from "../../../api/api";
 
-const CountryPicker = ({ handleCountryChange }) => {
+const CountryPicker = ({ countryChangeHandler }) => {
   const [fetchedCountries, setFetchedCountries] = useState([]);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const CountryPicker = ({ handleCountryChange }) => {
     <FormControl className={styles.formControl}>
       <NativeSelect
         defaultValue=''
-        onChange={(event) => handleCountryChange(event.target.value)}>
+        onChange={(event) => countryChangeHandler(event.target.value)}>
         <option value=''>Global</option>
         {fetchedCountries.map((country, i) => (
           <option key={i} value={country}>

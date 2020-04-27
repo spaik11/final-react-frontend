@@ -15,7 +15,7 @@ class Covid extends Component {
     this.setState({ data: fetchedData });
   }
 
-  handleCountryChange = async (country) => {
+  countryChangeHandler = async (country) => {
     const fetchedData = await fetchCovidData(country);
 
     this.setState({ data: fetchedData, country });
@@ -27,7 +27,7 @@ class Covid extends Component {
     return (
       <div className={styles.container}>
         <CovidCards data={data} />
-        <CountryPicker handleCountryChange={this.handleCountryChange} />
+        <CountryPicker handleCountryChange={this.countryChangeHandler} />
         <Chart data={data} country={country} />
       </div>
     );

@@ -93,7 +93,7 @@ const Register = (props) => {
           }
         });
     }
-  }, [errors, isSubmitting, values, setUserInfo, setUserStatus]);
+  }, [errors, isSubmitting, values, setUserInfo, setUserStatus, props.history]);
 
   const validate = (values) => {
     let errors = {};
