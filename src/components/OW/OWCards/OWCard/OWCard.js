@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Card, CardContent, Typography, CardMedia } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import CountUp from "react-countup";
+import cx from "classnames";
+import { UserContext } from "../../../UserContext";
 
 const useStyles = makeStyles({
   root: {
@@ -22,27 +24,33 @@ const useStyles = makeStyles({
     margin: "auto",
   },
   loggedUser: {
-    fontWeight: "bold",
+    border: "2px solid black",
   },
 });
 
 const OWCard = (props) => {
+  const { userStatus, userInfo } = useContext(UserContext);
+
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
 
   return (
-    <Card className={classes.root}>
+    <Card
+      className={cx(
+        classes.root,
+        userStatus &&
+          userInfo.owId.toLowerCase() ===
+            props.name.replace("#", "-").toLowerCase()
+          ? classes.loggedUser
+          : null
+      )}>
       <CardMedia
         className={classes.media}
         image={props.portrait}
         title='Overwatch'
       />
       <CardContent className={classes.card}>
-        <Typography
-          gutterBottom
-          variant='h5'
-          component='h2'
-          className={classes.loggedUser}>
+        <Typography gutterBottom variant='h5' component='h2'>
           {props.name.slice(0, props.name.indexOf("#")).toUpperCase()}
         </Typography>
         <Typography variant='body2' color='textSecondary' component='p'>

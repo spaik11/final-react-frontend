@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Loader from "react-loader-spinner";
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { fetchOwData } from "../../api/api";
 import { OWCards } from "../../components";
 import styles from "./OW.module.css";
@@ -22,17 +20,10 @@ class OW extends Component {
   render() {
     const { owData } = this.state;
 
-    let renderUsers =
-      owData.length > 0 ? (
-        <OWCards users={owData} />
-      ) : (
-        <Loader type='Puff' color='#00BFFF' height={100} width={100} />
-      );
-
     return (
       <div className={styles.container}>
         <Grid container spacing={3} justify='center'>
-          {renderUsers}
+          <OWCards users={owData} />
         </Grid>
       </div>
     );
